@@ -6,12 +6,13 @@ from colorama import *
 import random
 from datetime import datetime
 import time
+import sys
+import pyfiglet
 
 
 class PAWS:
     def __init__(self) -> None:
         self.session = requests.Session()
-
 
     def clear_terminal(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -25,14 +26,11 @@ class PAWS:
 
     def welcome(self):
         banner = f"""{Fore.GREEN}
-██   ██  █████   ██████ ██   ██ ███████ ██████      ██     ██  ██████  ██████  ██      ██████      ██████  ██████  
-██   ██ ██   ██ ██      ██  ██  ██      ██   ██     ██     ██ ██    ██ ██   ██ ██      ██   ██     ██   ██ ██   ██ 
-███████ ███████ ██      █████   █████   ██████      ██  █  ██ ██    ██ ██████  ██      ██   ██     ██████  ██   ██ 
-██   ██ ██   ██ ██      ██  ██  ██      ██   ██     ██ ███ ██ ██    ██ ██   ██ ██      ██   ██     ██   ██ ██   ██ 
-██   ██ ██   ██  ██████ ██   ██ ███████ ██   ██      ███ ███   ██████  ██   ██ ███████ ██████      ██████  ██████ """
+
+        """
         print(Fore.GREEN + Style.BRIGHT + banner + Style.RESET_ALL)
-        print(Fore.GREEN + f" PitchTalk Bot by HACKER WORLD BD")
-        print(Fore.RED + f" FREE TO USE = Join us on {Fore.GREEN}https://t.me/HACKER_WORLD_BD")
+        print(Fore.GREEN + f" JOIN TELEGRAM @savanop121")
+        print(Fore.RED + f" FREE TO USE = Join us on {Fore.GREEN}@savanop")
         print(Fore.YELLOW + f" before start please '{Fore.GREEN}git pull{Fore.YELLOW}' to update bot")
         print(f"{Fore.WHITE}~" * 60)
 
@@ -337,7 +335,106 @@ class PAWS:
                     f"{Fore.MAGENTA+Style.BRIGHT}]{Style.RESET_ALL}"
                 )
                 
+    def add_query(self):
+        query = input(f"{Fore.YELLOW}Enter the query to add: {Style.RESET_ALL}")
+        with open('query.txt', 'a') as file:
+            file.write(query + '\n')
+        print(f"{Fore.GREEN}Query added successfully!{Style.RESET_ALL}")
+
+    def reset_query(self):
+        open('query.txt', 'w').close()
+        user_agents_path = os.path.join('core', 'user_agents.json')
+        with open(user_agents_path, 'w') as file:
+            json.dump({}, file)
+        print(f"{Fore.GREEN}All queries have been reset and user_agents.json has been cleared!{Style.RESET_ALL}")
+
+    def add_proxy(self):
+        proxy = input(f"{Fore.YELLOW}Enter the proxy to add: {Style.RESET_ALL}")
+        with open('proxies.txt', 'a') as file:
+            file.write(proxy + '\n')
+        print(f"{Fore.GREEN}Proxy added successfully!{Style.RESET_ALL}")
+
+    def reset_proxies(self):
+        open('proxies.txt', 'w').close()
+        print(f"{Fore.GREEN}All proxies have been reset!{Style.RESET_ALL}")
+
+    def add_wallet(self):
+        wallet = input(f"{Fore.YELLOW}Enter the wallet to add: {Style.RESET_ALL}")
+        with open('wallets.txt', 'a') as file:
+            file.write(wallet + '\n')
+        print(f"{Fore.GREEN}Wallet added successfully!{Style.RESET_ALL}")
+
+    def reset_wallets(self):
+        open('wallets.txt', 'w').close()
+        print(f"{Fore.GREEN}All wallets have been reset!{Style.RESET_ALL}")
+
+    def toggle_connect_wallets(self):
+        config_path = 'config.json'
+        with open(config_path, 'r') as f:
+            config_data = json.load(f)
+        
+        config_data['connect_wallets'] = not config_data['connect_wallets']
+        
+        with open(config_path, 'w') as f:
+            json.dump(config_data, f, indent=4)
+        
+        status = "ON" if config_data['connect_wallets'] else "OFF"
+        print(f"{Fore.CYAN}╔══════════════════════════════════════╗")
+        print(f"{Fore.CYAN}║ {Fore.YELLOW}Connect wallets has been turned {Fore.GREEN}{status}{Fore.CYAN} ║")
+        print(f"{Fore.CYAN}╚══════════════════════════════════════╝")
+
+    def animate_text(self, text):
+        for char in text:
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            time.sleep(0.05)
+        print()
+
     def main(self):
+        while True:
+            self.clear_terminal()
+            self.welcome()
+            
+            menu = pyfiglet.figlet_format("SAVAN", font="slant")
+            print(Fore.CYAN + menu + Style.RESET_ALL)
+            
+            self.animate_text(f"{Fore.YELLOW}1. Start bot{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}2. Add query{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}3. Reset queries{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}4. Add proxy{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}5. Reset proxies{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}6. Add wallet{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}7. Reset wallets{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}8. Toggle connect wallets{Style.RESET_ALL}")
+            self.animate_text(f"{Fore.YELLOW}9. Exit{Style.RESET_ALL}")
+            
+            choice = input(f"\n{Fore.GREEN}Enter your choice: {Style.RESET_ALL}")
+            
+            if choice == '1':
+                self.start_bot()
+            elif choice == '2':
+                self.add_query()
+            elif choice == '3':
+                self.reset_query()
+            elif choice == '4':
+                self.add_proxy()
+            elif choice == '5':
+                self.reset_proxies()
+            elif choice == '6':
+                self.add_wallet()
+            elif choice == '7':
+                self.reset_wallets()
+            elif choice == '8':
+                self.toggle_connect_wallets()
+            elif choice == '9':
+                print(f"{Fore.RED}Exiting...{Style.RESET_ALL}")
+                break
+            else:
+                print(f"{Fore.RED}Invalid choice. Please try again.{Style.RESET_ALL}")
+            
+            input(f"\n{Fore.CYAN}Press Enter to continue...{Style.RESET_ALL}")
+
+    def start_bot(self):
         try:
             with open('query.txt', 'r') as file:
                 queries = [line.strip() for line in file if line.strip()]
@@ -345,7 +442,6 @@ class PAWS:
                 proxies = [line.strip() for line in file if line.strip()]
             with open('wallets.txt', 'r') as file:
                 wallets = [line.strip() for line in file if line.strip()]
-
 
             while True:
                 self.log(
@@ -375,11 +471,10 @@ class PAWS:
                                 f"{Fore.GREEN + Style.BRIGHT}Use proxy: {Style.RESET_ALL}"
                                 f"{Fore.WHITE + Style.BRIGHT}{proxy}{Style.RESET_ALL}"
                             )
-
                         else:
                             self.log(Fore.RED + "Number of proxies is less than the number of accounts. Proxies are not used!")
 
-
+                        wallet = None
                         if config['connect_wallets']:
                             if len(wallets) >= len(queries):
                                 wallet = wallets[i]
@@ -387,12 +482,8 @@ class PAWS:
                                     f"{Fore.GREEN + Style.BRIGHT}Connect wallet:{Style.RESET_ALL}"
                                     f"{Fore.WHITE + Style.BRIGHT}{wallet}{Style.RESET_ALL}"
                                 )
-
                             else:
                                 self.log(Fore.RED + "The number of wallets is less than the number of accounts. The connection of wallets is disabled!")
-                                wallet = None
-                        else:
-                            wallet = None
 
                         user_info = extract_user_data(query)
                         user_id = str(user_info.get('id'))
