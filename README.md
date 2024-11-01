@@ -2,7 +2,7 @@
 
 
 [![Join our Telegram](https://t.me/HACKER_WORLD_BD)
-[![GitHub](https://github.com/HACKERWORLDBD)
+[![GitHub]( https://github.com/kirhs/pawsfree.git ))
 
 ## Registrations [https://t.me/PAWSOG_bot/](https://t.me/PAWSOG_bot/PAWS?startapp=1ZuwyNwq)
 
@@ -21,8 +21,8 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/HACKERWORLDBD/PawsCum.git
-   cd PawsCum
+   git https://github.com/kirhs/pawsfree.git
+   cd Pawsfree
    
 Create and activate a virtual environment:
 
@@ -52,7 +52,7 @@ Create a config.json file in the root directory with the following structure:
 
 `connect_wallets` - `true` / `false` - if you want to connect wallets, add the addresses of TON wallets to wallets.txt . The number of wallets must match the number of accounts. 
 
-Example of an address - `UQAIsAepLajIsWU58DxPTM7D_GQG01MSk63qJckHQ9WBj2QC`
+Example of an address - `UQAykCCfXcKFjhj0YJ9v62VfkitoPpDkNz86db2OfxnB0awq`
 
 `delay_account`: Delay between processing different accounts (in seconds) - the minimum and maximum values are taken randomly
 
@@ -104,4 +104,4 @@ user=%7B%22id%....
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
-For questions or support, please contact [CUCUMBER TG CHAT](https://t.me/HACKER_WORLD_BD)
+For questions or support, please contact [CUCUMBER TG CHAT]()
