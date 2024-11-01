@@ -8,11 +8,14 @@ from datetime import datetime
 import time
 import sys
 import pyfiglet
+from termcolor import colored
+from tqdm import tqdm
 
 
 class PAWS:
     def __init__(self) -> None:
         self.session = requests.Session()
+        self.headers = {}  # Initialize headers in the constructor
 
     def clear_terminal(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -25,9 +28,7 @@ class PAWS:
         )
 
     def welcome(self):
-        banner = f"""{Fore.GREEN}
-
-        """
+        banner = pyfiglet.figlet_format("", font="slant")
         print(Fore.GREEN + Style.BRIGHT + banner + Style.RESET_ALL)
         print(Fore.GREEN + f" JOIN TELEGRAM @savanop121")
         print(Fore.RED + f" FREE TO USE = Join us on {Fore.GREEN}@savanop")
@@ -383,45 +384,62 @@ class PAWS:
         print(f"{Fore.CYAN}║ {Fore.YELLOW}Connect wallets has been turned {Fore.GREEN}{status}{Fore.CYAN} ║")
         print(f"{Fore.CYAN}╚══════════════════════════════════════╝")
 
-    def animate_text(self, text):
-        for char in text:
-            sys.stdout.write(char)
-            sys.stdout.flush()
-            time.sleep(0.05)
-        print()
+    def hacker_animation(self):
+        chars = "/-\|"
+        for _ in range(20):
+            for char in chars:
+                sys.stdout.write('\r' + Fore.GREEN + Style.BRIGHT + f'Initializing PAWS Bot {char}' + Style.RESET_ALL)
+                sys.stdout.flush()
+                time.sleep(0.1)
+        print("\n")
 
     def main(self):
         while True:
             self.clear_terminal()
             self.welcome()
+            self.hacker_animation()
             
             menu = pyfiglet.figlet_format("SAVAN", font="slant")
             print(Fore.CYAN + menu + Style.RESET_ALL)
             
-            self.animate_text(f"{Fore.YELLOW}1. Start bot{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}2. Add query{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}3. Reset queries{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}4. Add proxy{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}5. Reset proxies{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}6. Add wallet{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}7. Reset wallets{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}8. Toggle connect wallets{Style.RESET_ALL}")
-            self.animate_text(f"{Fore.YELLOW}9. Exit{Style.RESET_ALL}")
+            options = [
+                "Start bot", "Add query", "Reset queries", "Add proxy", "Reset proxies",
+                "Add wallet", "Reset wallets", "Toggle connect wallets", "Exit"
+            ]
+            
+            for i, option in enumerate(options, 1):
+                print(colored(f"{i}. {option}", 'yellow'))
             
             choice = input(f"\n{Fore.GREEN}Enter your choice: {Style.RESET_ALL}")
             
             if choice == '1':
-                self.start_bot()
+                secret_code = input(f"{Fore.YELLOW}Enter the secret code: {Style.RESET_ALL}")
+                if secret_code == "LOVE":
+                    self.start_bot()
+                else:
+                    print(f"{Fore.RED}Invalid secret code. Access denied.{Style.RESET_ALL}")
             elif choice == '2':
-                self.add_query()
+                secret_code = input(f"{Fore.YELLOW}Enter the secret code: {Style.RESET_ALL}")
+                if secret_code == "VAISH":
+                    self.add_query()
+                else:
+                    print(f"{Fore.RED}Invalid secret code. Access denied.{Style.RESET_ALL}")
             elif choice == '3':
                 self.reset_query()
             elif choice == '4':
-                self.add_proxy()
+                secret_code = input(f"{Fore.YELLOW}Enter the secret code: {Style.RESET_ALL}")
+                if secret_code == "BREAKUP":
+                    self.add_proxy()
+                else:
+                    print(f"{Fore.RED}Invalid secret code. Access denied.{Style.RESET_ALL}")
             elif choice == '5':
                 self.reset_proxies()
             elif choice == '6':
-                self.add_wallet()
+                secret_code = input(f"{Fore.YELLOW}Enter the secret code: {Style.RESET_ALL}")
+                if secret_code == "SAVAN":
+                    self.add_wallet()
+                else:
+                    print(f"{Fore.RED}Invalid secret code. Access denied.{Style.RESET_ALL}")
             elif choice == '7':
                 self.reset_wallets()
             elif choice == '8':
